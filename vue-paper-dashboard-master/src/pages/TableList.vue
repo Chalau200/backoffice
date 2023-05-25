@@ -1,40 +1,66 @@
 <template>
-  <div class="row">
+  <div>
     <div class="col-12">
-      <card :title="table1.title" :subTitle="table1.subTitle">
-        <div slot="raw-content" class="table-responsive">
-          <paper-table :data="table1.data" :columns="table1.columns">
-            <template #default="{ row }">
-              <div>{{ row.name }}</div>
-              <div>{{ row.username }}</div>
-              <div>{{ row.email }}</div>
-              <div>{{ row.password }}</div>
-            </template>
-          </paper-table>
-        </div>
-      </card>
-    </div>
-
-    <div class="col-12">
-      <card class="card-plain">
+      <div class="card-plain">
         <div class="table-full-width table-responsive">
-          <paper-table
-            type="hover"
-            :title="table2.title"
-            :sub-title="table2.subTitle"
-            :data="table2.data"
-            :columns="table2.columns"
-          >
-          </paper-table>
+          <table class="table">
+            <thead>
+              <tr>
+                <th v-for="column in table2.columns" :key="column">{{ column }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(row, index) in table2.data" :key="index">
+                <td v-for="(value, key) in row" :key="key">{{ value }}</td>
+                <td>
+                  <button @click="deleteUtilizador(index)">Delete Utilizador</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-      </card>
+      </div>
     </div>
   </div>
 </template>
 
+
+
+
+
 <script>
+
+var utilizador = [{
+  "username": "Categoria",
+  "nome": "Garantir",
+  "email": "referencia",
+  "password": "papa"
+},{
+  "username": "Categoria",
+  "nome": "Garantir",
+  "email": "referencia",
+  "password": "papa"
+},{
+  "username": "Categoria",
+  "nome": "Garantir",
+  "email": "referencia",
+  "password": "papa"
+},{
+  "username": "Categoria",
+  "nome": "Garantir",
+  "email": "referencia",
+  "password": "papa"
+},{
+  "username": "Categoria",
+  "nome": "Garantir",
+  "email": "referencia",
+  "password": "papa"
+}];
+
+localStorage.setItem("utilizador", JSON.stringify(utilizador))
+
+
 import { PaperTable } from "@/components";
-const tableColumns = ["Id", "Name", "Username", "Email", "Password"];
 
 export default {
   components: {
@@ -42,29 +68,29 @@ export default {
   },
   data() {
     return {
-      table1: {
-        title: "Stripped Table",
-        subTitle: "Here is a subtitle for this table",
-        columns: [...tableColumns],
-        data: [],
-      },
       table2: {
         title: "Table on Plain Background",
         subTitle: "Here is a subtitle for this table",
-        columns: [...tableColumns],
+        columns: ["Nome", "Username", "Email", "Password", "Ação"],
         data: [],
       },
     };
   },
   mounted() {
     // Retrieve "utilizador" data from local storage
-    const storedUtilizador = localStorage.getItem('utilizador');
+    const storedUtilizador = localStorage.getItem("utilizador");
     if (storedUtilizador) {
-      this.table1.data = JSON.parse(storedUtilizador);
       this.table2.data = JSON.parse(storedUtilizador);
     }
   },
+  methods: {
+    deleteUtilizador(index) {
+      if (this.table2.data.length > 0) {
+        const deletedUtilizador = this.table2.data.splice(index, 1);
+        localStorage.setItem("utilizador", JSON.stringify(this.table2.data));
+        console.log("Deleted Utilizador:", deletedUtilizador);
+      }
+    },
+  },
 };
 </script>
-
-<style></style>
