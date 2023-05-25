@@ -30,7 +30,7 @@
 
 <script>
 
-var utilizador = [{
+/*var utilizador = [{
   "username": "Categoria",
   "nome": "Garantir",
   "email": "referencia",
@@ -57,7 +57,7 @@ var utilizador = [{
   "password": "papa"
 }];
 
-localStorage.setItem("utilizador", JSON.stringify(utilizador))
+localStorage.setItem("utilizador", JSON.stringify(utilizador))*/
 
 
 import { PaperTable } from "@/components";

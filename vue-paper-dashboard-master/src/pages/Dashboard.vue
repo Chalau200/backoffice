@@ -1,4 +1,4 @@
-var marcacao= [{
+<!--var marcacao= [{
   "estado": "Categoria",
   "Data": "Garantir",
   "Organizacao": "referencia",
@@ -30,7 +30,7 @@ var marcacao= [{
   "username":"pol"
 }];
 
-localStorage.setItem("marcacao", JSON.stringify(marcacao))
+localStorage.setItem("marcacao", JSON.stringify(marcacao))-->
 
 
 
