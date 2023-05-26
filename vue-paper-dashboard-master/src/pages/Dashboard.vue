@@ -1,39 +1,3 @@
-<!--var marcacao= [{
-  "estado": "Categoria",
-  "Data": "Garantir",
-  "Organizacao": "referencia",
-  "Contacto": "papa",
-  "username":"pol"
-},{
-  "estado": "Categoria",
-  "Data": "Garantir",
-  "Organizacao": "referencia",
-  "Contacto": "papa",
-  "username":"pol"
-},{
-  "estado": "Categoria",
-  "Data": "Garantir",
-  "Organizacao": "referencia",
-  "Contacto": "papa",
-  "username":"pol"
-},{
-  "estado": "Categoria",
-  "Data": "Garantir",
-  "Organizacao": "referencia",
-  "Contacto": "papa",
-  "username":"pol"
-},{
-  "estado": "Categoria",
-  "Data": "Garantir",
-  "Organizacao": "referencia",
-  "Contacto": "papa",
-  "username":"pol"
-}];
-
-localStorage.setItem("marcacao", JSON.stringify(marcacao))-->
-
-
-
 <template>
   <div>
     <!--Stats cards-->
