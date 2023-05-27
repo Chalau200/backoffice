@@ -14,6 +14,7 @@
                 <th>Organização</th>
                 <th>Contacto</th>
                 <th>Editar</th>
+                <th>Apagar</th> <!-- New column for delete button -->
               </tr>
             </thead>
             <tbody>
@@ -46,6 +47,9 @@
                 <td>
                   <button v-if="!item.editMode" @click="toggleEditMode(item)">Editar</button>
                   <button v-else @click="saveChanges(item)">Save</button>
+                </td>
+                <td>
+                  <button @click="deleteItem(index)">Apagar</button> <!-- Delete button -->
                 </td>
               </tr>
             </tbody>
@@ -81,9 +85,19 @@ export default {
       item.editMode = false;
 
       // Update local storage with the modified tableData
+      this.updateLocalStorage();
+    },
+    deleteItem(index) {
+      this.tableData.splice(index, 1);
+
+      // Update local storage after deleting the item
+      this.updateLocalStorage();
+    },
+    updateLocalStorage() {
       localStorage.setItem('ItensDetalhe', JSON.stringify(this.tableData));
     },
   },
 };
 </script>
+
 
