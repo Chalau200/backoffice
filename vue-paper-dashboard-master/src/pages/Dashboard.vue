@@ -14,11 +14,7 @@
           chart-type="Pie"
         >
           
-          <div slot="legend">
-            <i class="fa fa-circle text-info"></i> Aceite
-            <i class="fa fa-circle text-danger"></i> Pendente
-            <i class="fa fa-circle text-warning"></i> Rejeitado
-          </div>
+          
         </chart-card>
       </div>
 
