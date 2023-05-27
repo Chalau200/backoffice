@@ -7,7 +7,7 @@
             <thead>
               <tr>
                 <th v-for="column in table2.columns" :key="column">{{ column }}</th>
-                <th>Funcionario</th> <!-- New column -->
+                <th>Funcionário</th> <!-- New column -->
               </tr>
             </thead>
             <tbody>
@@ -24,7 +24,7 @@
                 </td>
                 <td>
                   <select v-model="row.funcionario" v-if="row.estado !== 'Aceite'">
-                    <option value="">Select Funcionario</option>
+                    <option value="">Selecionar Funcionario</option>
                     <option v-for="funcionario in funcionarios" :value="funcionario.nome">{{ funcionario.nome }}</option>
                   </select>
                 </td>
@@ -54,7 +54,7 @@ export default {
       table2: {
         title: "Table on Plain Background",
         subTitle: "Here is a subtitle for this table",
-        columns: ["estado", "Data", "Organizacao", "Contacto", "Username", "Aceitar", "Rejeitar"],
+        columns: ["Estado", "Data", "Organização", "Contacto", "Username", "Aceitar", "Rejeitar"],
         data: [],
       },
       funcionarios: [], // List of funcionarios

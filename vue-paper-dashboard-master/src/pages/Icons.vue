@@ -14,7 +14,7 @@
                 <td>{{ row.nome }}</td>
                 <td>{{ row.email }}</td>
                 <td>
-                  <button @click="deleteFuncionario(index)">Delete Funcionario</button>
+                  <button @click="deleteFuncionario(index)">Apagar Funcionário</button>
                 </td>
               </tr>
             </tbody>
@@ -23,11 +23,11 @@
       </div>
     </div>
     <div>
-      <h3>Add New Funcionario</h3>
+      <h3>Criar Funcionário</h3>
       <input type="text" v-model="newFuncionario.nome" placeholder="Nome" />
       <input type="text" v-model="newFuncionario.email" placeholder="Email" />
-      <button @click="addFuncionario" :disabled="!isValidEmail(newFuncionario.email)">Add Funcionario</button>
-      <span v-if="!isValidEmail(newFuncionario.email)" style="color: red;">Invalid email</span>
+      <button @click="addFuncionario" :disabled="!isValidEmail(newFuncionario.email)">Criar Funcionario</button>
+      <span v-if="!isValidEmail(newFuncionario.email)" style="color: red;"> Email Inválido</span>
     </div>
   </div>
 </template>

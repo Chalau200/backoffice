@@ -2,49 +2,49 @@
   <div class="container">
     <form @submit.prevent="createActivity" class="form">
       <div class="form-group">
-        <label>Image:</label>
+        <label>Imagem:</label>
         <div class="file-upload">
           <input type="file" accept="image/*" @change="handleImageUpload" />
-          <span class="file-upload-label">Choose File</span>
+          <span class="file-upload-label">Escolher ficheiro</span>
         </div>
       </div>
 
       <div class="form-group">
-        <label>Description:</label>
+        <label>Descrição:</label>
         <textarea v-model="activity.Descricaoo"></textarea>
       </div>
 
       <div class="form-group">
-        <label>Organization:</label>
+        <label>Organizaçao:</label>
         <input type="text" v-model="activity.Organizacao" />
       </div>
 
       <div class="form-group">
-        <label>Date:</label>
+        <label>Data:</label>
         <input type="text" v-model="activity.Data" />
       </div>
 
       <div class="form-group">
-        <label>Location:</label>
+        <label>Local:</label>
         <input type="text" v-model="activity.Local" />
       </div>
 
       <div class="form-group">
-        <label>Available Slots:</label>
+        <label>Vagas disponiveis:</label>
         <input type="number" v-model="activity.VagasDisponiveis" />
       </div>
 
       <div class="form-group">
-        <label>Type:</label>
+        <label>Tipo:</label>
         <input type="text" v-model="activity.Tipo" />
       </div>
 
       <div class="form-group">
-        <label>Contact:</label>
+        <label>Contacto:</label>
         <input type="text" v-model="activity.Contacto" />
       </div>
 
-      <button type="submit">Create</button>
+      <button type="submit">Criar atividade</button>
     </form>
   </div>
 </template>

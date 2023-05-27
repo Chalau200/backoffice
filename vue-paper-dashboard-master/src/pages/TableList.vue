@@ -13,7 +13,7 @@
               <tr v-for="(row, index) in table2.data" :key="index">
                 <td v-for="(value, key) in row" :key="key">{{ value }}</td>
                 <td>
-                  <button @click="deleteUtilizador(index)">Delete Utilizador</button>
+                  <button @click="deleteUtilizador(index)">Apagar Utilizador</button>
                 </td>
               </tr>
             </tbody>

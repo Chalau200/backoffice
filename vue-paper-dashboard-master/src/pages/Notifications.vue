@@ -6,14 +6,14 @@
           <table class="table">
             <thead>
               <tr>
-                <th>Descricaoo</th>
+                <th>Descrição</th>
                 <th>Tipo</th>
-                <th>VagasDisponiveis</th>
+                <th>Vagas Disponiveis</th>
                 <th>Data</th>
                 <th>Local</th>
-                <th>Organizacao</th>
+                <th>Organização</th>
                 <th>Contacto</th>
-                <th></th>
+                <th>Editar</th>
               </tr>
             </thead>
             <tbody>
@@ -44,7 +44,7 @@
                 </td>
                 <td>{{ item.Contacto }}</td>
                 <td>
-                  <button v-if="!item.editMode" @click="toggleEditMode(item)">Edit</button>
+                  <button v-if="!item.editMode" @click="toggleEditMode(item)">Editar</button>
                   <button v-else @click="saveChanges(item)">Save</button>
                 </td>
               </tr>
