@@ -13,6 +13,7 @@
               <tr v-for="(row, index) in table2.data" :key="index">
                 <td>{{ row.nome }}</td>
                 <td>{{ row.email }}</td>
+                <td>{{ row.username }}</td>
                 <td>
                   <button @click="deleteFuncionario(index)">Apagar Funcionário</button>
                 </td>
@@ -26,12 +27,14 @@
       <h3>Criar Funcionário</h3>
       <input type="text" v-model="newFuncionario.nome" placeholder="Nome" />
       <input type="text" v-model="newFuncionario.email" placeholder="Email" />
-      <button @click="addFuncionario" :disabled="!isValidEmail(newFuncionario.email)">Criar Funcionario</button>
-      <span v-if="!isValidEmail(newFuncionario.email)" style="color: red;"> Email Inválido</span>
+      <input type="text" v-model="newFuncionario.username" placeholder="Username" />
+      <input type="password" v-model="newFuncionario.password" placeholder="Password" />
+      <button @click="addFuncionario" :disabled="!isValidFuncionario || !isValidEmail(newFuncionario.email)">Criar Funcionário</button>
+      <span v-if="!isValidFuncionario" style="color: red;">Dados Incompletos</span>
+      <span v-if="!isValidEmail(newFuncionario.email)" style="color: red;">Email Inválido</span>
     </div>
   </div>
 </template>
-
 <script>
 export default {
   data() {
@@ -39,12 +42,14 @@ export default {
       table2: {
         title: "Table on Plain Background",
         subTitle: "Here is a subtitle for this table",
-        columns: ["Nome", "Email", "Ação"],
+        columns: ["Nome", "Email", "Username", "Ação"],
         data: [],
       },
       newFuncionario: {
         nome: "",
         email: "",
+        username: "",
+        password: "",
       },
     };
   },
@@ -53,35 +58,59 @@ export default {
   },
   methods: {
     retrieveFuncionarios() {
-      const storedFuncionarios = localStorage.getItem("funcionarios");
+      const storedFuncionarios = localStorage.getItem("funcionario");
       if (storedFuncionarios) {
         this.table2.data = JSON.parse(storedFuncionarios);
       }
     },
     addFuncionario() {
-      const funcionario = { ...this.newFuncionario };
+      const funcionario = { ...this.newFuncionario, role: "funcionario" };
       this.table2.data.push(funcionario);
       this.saveFuncionarios();
+      this.saveUtilizador(funcionario);
       this.resetNewFuncionario();
     },
     deleteFuncionario(index) {
       if (this.table2.data.length > 0) {
         const deletedFuncionario = this.table2.data.splice(index, 1);
+        this.deleteFromUtilizador(deletedFuncionario[0]);
         this.saveFuncionarios();
         console.log("Deleted Funcionario:", deletedFuncionario);
       }
     },
+    deleteFromUtilizador(deletedFuncionario) {
+      const utilizadores = JSON.parse(localStorage.getItem("utilizador")) || [];
+      const updatedUtilizadores = utilizadores.filter(
+        (funcionario) => funcionario.username !== deletedFuncionario.username
+      );
+      localStorage.setItem("utilizador", JSON.stringify(updatedUtilizadores));
+    },
     saveFuncionarios() {
-      localStorage.setItem("funcionarios", JSON.stringify(this.table2.data));
+      localStorage.setItem("funcionario", JSON.stringify(this.table2.data));
+    },
+    saveUtilizador(funcionario) {
+      const utilizadores = JSON.parse(localStorage.getItem("utilizador")) || [];
+      utilizadores.push(funcionario);
+      localStorage.setItem("utilizador", JSON.stringify(utilizadores));
     },
     resetNewFuncionario() {
       this.newFuncionario = {
         nome: "",
         email: "",
+        username: "",
+        password: "",
       };
     },
+    isValidFuncionario() {
+      const { nome, email, username, password } = this.newFuncionario;
+      return (
+        nome !== "" &&
+        email !== "" &&
+        username !== "" &&
+        password !== ""
+      );
+    },
     isValidEmail(email) {
-      // Basic email validation using regular expression
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return emailRegex.test(email);
     },
