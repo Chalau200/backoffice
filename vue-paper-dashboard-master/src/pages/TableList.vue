@@ -10,7 +10,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(row, index) in filteredData" :key="index">
+              <tr v-for="(row, index) in table2.data" :key="index">
                 <td v-for="(value, key) in row" :key="key">{{ value }}</td>
                 <td>
                   <button @click="deleteUtilizador(index)">Apagar Utilizador</button>
@@ -24,7 +24,42 @@
   </div>
 </template>
 
+
+
+
+
 <script>
+
+/*var utilizador = [{
+  "username": "Categoria",
+  "nome": "Garantir",
+  "email": "referencia",
+  "password": "papa"
+},{
+  "username": "Categoria",
+  "nome": "Garantir",
+  "email": "referencia",
+  "password": "papa"
+},{
+  "username": "Categoria",
+  "nome": "Garantir",
+  "email": "referencia",
+  "password": "papa"
+},{
+  "username": "Categoria",
+  "nome": "Garantir",
+  "email": "referencia",
+  "password": "papa"
+},{
+  "username": "Categoria",
+  "nome": "Garantir",
+  "email": "referencia",
+  "password": "papa"
+}];
+
+localStorage.setItem("utilizador", JSON.stringify(utilizador))*/
+
+
 import { PaperTable } from "@/components";
 
 export default {
@@ -36,15 +71,10 @@ export default {
       table2: {
         title: "Table on Plain Background",
         subTitle: "Here is a subtitle for this table",
-        columns: ["Nome", "Username", "Email", "Password","Tipo", "Ação"],
+        columns: ["Nome", "Username", "Email", "Password", "Ação"],
         data: [],
       },
     };
-  },
-  computed: {
-    filteredData() {
-      return this.table2.data.filter((user) => user.role === "cliente");
-    },
   },
   mounted() {
     // Retrieve "utilizador" data from local storage
@@ -55,9 +85,9 @@ export default {
   },
   methods: {
     deleteUtilizador(index) {
-      if (this.filteredData.length > 0) {
-        const deletedUtilizador = this.filteredData.splice(index, 1);
-        localStorage.setItem("utilizador", JSON.stringify(this.filteredData));
+      if (this.table2.data.length > 0) {
+        const deletedUtilizador = this.table2.data.splice(index, 1);
+        localStorage.setItem("utilizador", JSON.stringify(this.table2.data));
         console.log("Deleted Utilizador:", deletedUtilizador);
       }
     },
