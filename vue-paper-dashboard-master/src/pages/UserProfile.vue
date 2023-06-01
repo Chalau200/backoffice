@@ -1,3 +1,5 @@
+Criar atividade
+
 <template>
   <div class="container">
     <form @submit.prevent="createActivity" class="form">
@@ -106,6 +108,9 @@ export default {
 
         // Reset form and activity object
         this.resetForm();
+
+        alert("Atividade criada!");
+
       }
     },
     resetForm() {
