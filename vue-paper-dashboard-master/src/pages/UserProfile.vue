@@ -21,7 +21,7 @@
 
       <div class="form-group">
         <label>Data:</label>
-        <input type="text" v-model="activity.Data" />
+        <datepicker v-model="activity.Data" format="yyyy-MM-dd"></datepicker>
       </div>
 
       <div class="form-group">
@@ -31,7 +31,7 @@
 
       <div class="form-group">
         <label>Vagas disponiveis:</label>
-        <input type="number" v-model="activity.VagasDisponiveis" />
+        <input type="number" v-model="activity.VagasDisponiveis" min="1" />
       </div>
 
       <div class="form-group">
@@ -50,7 +50,13 @@
 </template>
 
 <script>
+
+import Datepicker from "vuejs-datepicker";
+
 export default {
+  components: {
+    Datepicker,
+  },
   data() {
     return {
       activity: {
@@ -75,8 +81,20 @@ export default {
         // Save activity to local storage
         const activities =
           JSON.parse(localStorage.getItem("ItensDetalhe")) || [];
+          const existingContact = activities.find(
+      (activity) => activity.Contacto === this.activity.Contacto
+    );
+
+    if (existingContact) {
+      alert("Contacto já registado.");
+      return;
+    }  
         const activityWithoutImage = { ...this.activity };
         delete activityWithoutImage.imagem;
+
+        const date = new Date(activityWithoutImage.Data);
+    activityWithoutImage.Data = date.toISOString().substr(0, 10);
+        
         activities.push(activityWithoutImage);
         localStorage.setItem("ItensDetalhe", JSON.stringify(activities));
 
@@ -105,10 +123,16 @@ export default {
     validateForm() {
       for (const key in this.activity) {
         if (!this.activity[key]) {
-          alert("Please fill in all fields.");
+          alert("Todos os campos têm de ser preenchidos");
           return false;
         }
       }
+
+      if (this.activity.Contacto.length !== 9 || isNaN(this.activity.Contacto)) {
+        alert("O contacto deve ser um número com 9 dígitos");
+        return false;
+      }
+
       return true;
     },
   },

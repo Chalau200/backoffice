@@ -1,11 +1,15 @@
 <template>
-  <card class="card-map" title="Google Maps">
+  <card class="card-map" title="Sede">
     <div class="map">
       <div id="map"></div>
     </div>
   </card>
 </template>
+
+
 <script>
+
+
 export default {
   mounted() {
     var myLatlng = new window.google.maps.LatLng(41.450592, -8.294208);
@@ -85,4 +89,5 @@ export default {
   },
 };
 </script>
-<style></style>
+
+

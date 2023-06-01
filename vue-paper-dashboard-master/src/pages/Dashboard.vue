@@ -1,7 +1,28 @@
 <template>
   <div>
     
-
+    <div class="flex bg-gray-100 rounded shadow p-4">
+    <div class="mr-8">
+      <p class="text-lg font-semibold">Utilizadores:</p>
+      <p class="text-xl">{{ utilizadorCount }}</p>
+    </div>
+    <div class="mr-8">
+      <p class="text-lg font-semibold">Funcionários:</p>
+      <p class="text-xl">{{ funcionariosCount }}</p>
+    </div>
+    <div class="mr-8">
+      <p class="text-lg font-semibold">Oportunidades:</p>
+      <p class="text-xl">{{ itensDetalheCount }}</p>
+    </div>
+    <div class="mr-8">
+      <p class="text-lg font-semibold">Marcações:</p>
+      <p class="text-xl">{{ marcacaoCount }}</p>
+    </div>
+    <div>
+      <p class="text-lg font-semibold">Doações:</p>
+      <p class="text-xl">{{ TodasDoacoesCount }}</p>
+    </div>
+  </div>
     <!-- Charts -->
     <div class="row">
       
@@ -27,6 +48,8 @@
 
 
 
+
+
 import { StatsCard, ChartCard } from "@/components/index";
 import Chartist from "chartist";
 import ChartistLegend from "chartist-plugin-legend";
@@ -40,6 +63,9 @@ export default {
     return {
       utilizadorCount: 0,
       itensDetalheCount: 0,
+      marcacaoCount: 0,
+      TodasDoacoesCount: 0,
+
       statsCards: [
         {
           type: "warning",
@@ -161,6 +187,25 @@ export default {
         const itensDetalhe = JSON.parse(itensDetalheData);
         this.itensDetalheCount = itensDetalhe.length;
       }
+
+      const marcacaoData = localStorage.getItem('marcacao');
+      if (marcacaoData) {
+        const marcacao = JSON.parse(marcacaoData);
+        this.marcacaoCount = marcacao.length;
+      }
+
+      const funcionariosData = localStorage.getItem('funcionarios');
+      if (funcionariosData) {
+        const funcionarios= JSON.parse(funcionariosData);
+        this.funcionariosCount = funcionarios.length;
+      }
+
+      const TodasDoacoesData = localStorage.getItem('TodasDoacoes');
+      if (TodasDoacoesData) {
+        const TodasDoacoes= JSON.parse(TodasDoacoesData);
+        this.TodasDoacoesCount = TodasDoacoes.length;
+      }
+
     },
   },
   computed: {
@@ -195,3 +240,15 @@ export default {
   },
 };
 </script>
+
+
+
+<style scoped>
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+}
+</style>

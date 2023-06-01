@@ -88,16 +88,29 @@ export default {
       this.updateLocalStorage();
     },
     deleteItem(index) {
-      this.tableData.splice(index, 1);
+  // Ask for confirmation before deleting
+  if (confirm("De certeza que quer apagar esta oportunidade?")) {
+    
+    const deletedItem = this.tableData[index];
+    this.tableData.splice(index, 1);
 
-      // Update local storage after deleting the item
-      this.updateLocalStorage();
-    },
+    // Update local storage after deleting the item
+    this.updateLocalStorage();
+
+    const marcacoes = JSON.parse(localStorage.getItem('marcacao'));
+    const updatedMarcacoes = marcacoes.filter(marcacao => marcacao.Contacto !== deletedItem.Contacto);
+    localStorage.setItem('marcacao', JSON.stringify(updatedMarcacoes));
+
+  }
+},
     updateLocalStorage() {
       localStorage.setItem('ItensDetalhe', JSON.stringify(this.tableData));
     },
   },
 };
+
+
+
 </script>
 
 

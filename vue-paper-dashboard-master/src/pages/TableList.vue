@@ -13,7 +13,7 @@
               <tr v-for="(row, index) in table2.data" :key="index">
                 <td v-for="(value, key) in row" :key="key">{{ value }}</td>
                 <td>
-                  <button @click="deleteUtilizador(index)">Apagar Utilizador</button>
+                  <button @click="confirmDelete(index)">Apagar Utilizador</button>
                 </td>
               </tr>
             </tbody>
@@ -24,40 +24,7 @@
   </div>
 </template>
 
-
-
-
-
 <script>
-
-/*var utilizador = [{
-  "username": "Categoria",
-  "nome": "Garantir",
-  "email": "referencia",
-  "password": "papa"
-},{
-  "username": "Categoria",
-  "nome": "Garantir",
-  "email": "referencia",
-  "password": "papa"
-},{
-  "username": "Categoria",
-  "nome": "Garantir",
-  "email": "referencia",
-  "password": "papa"
-},{
-  "username": "Categoria",
-  "nome": "Garantir",
-  "email": "referencia",
-  "password": "papa"
-},{
-  "username": "Categoria",
-  "nome": "Garantir",
-  "email": "referencia",
-  "password": "papa"
-}];
-
-localStorage.setItem("utilizador", JSON.stringify(utilizador))*/
 
 
 import { PaperTable } from "@/components";
@@ -71,7 +38,7 @@ export default {
       table2: {
         title: "Table on Plain Background",
         subTitle: "Here is a subtitle for this table",
-        columns: ["Nome", "Username", "Email", "Password", "Ação"],
+        columns: ["Username", "Nome", "Email", "Password", "Ação"],
         data: [],
       },
     };
@@ -84,6 +51,11 @@ export default {
     }
   },
   methods: {
+    confirmDelete(index) {
+      if (confirm("Tem a certeza que quer apagar este utilizador?")) {
+        this.deleteUtilizador(index);
+      }
+    },
     deleteUtilizador(index) {
       if (this.table2.data.length > 0) {
         const deletedUtilizador = this.table2.data.splice(index, 1);
@@ -94,3 +66,4 @@ export default {
   },
 };
 </script>
+

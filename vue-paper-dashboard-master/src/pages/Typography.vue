@@ -37,6 +37,8 @@
 </template>
 
 <script>
+
+
 import { PaperTable } from "@/components";
 
 export default {
@@ -48,7 +50,7 @@ export default {
       table2: {
         title: "Table on Plain Background",
         subTitle: "Here is a subtitle for this table",
-        columns: ["Estado", "Data", "Organização", "Contacto", "Username", "Aceitar", "Rejeitar"],
+        columns: ["Estado", "Data", "Contacto", "Organização", "Funcionario", "Username", "Aceitar", "Rejeitar"],
         data: [],
       },
       funcionarios: [], // List of funcionarios

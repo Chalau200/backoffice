@@ -14,7 +14,7 @@
                 <td>{{ row.nome }}</td>
                 <td>{{ row.email }}</td>
                 <td>
-                  <button @click="deleteFuncionario(index)">Apagar Funcionário</button>
+                  <button @click="confirmDelete(index)">Apagar Funcionário</button>
                 </td>
               </tr>
             </tbody>
@@ -63,6 +63,11 @@ export default {
       this.table2.data.push(funcionario);
       this.saveFuncionarios();
       this.resetNewFuncionario();
+    },
+    confirmDelete(index) {
+      if (confirm("De certeza que quer apagar este funcionário?")) {
+        this.deleteFuncionario(index);
+      }
     },
     deleteFuncionario(index) {
       if (this.table2.data.length > 0) {
