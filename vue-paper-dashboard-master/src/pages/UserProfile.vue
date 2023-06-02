@@ -38,7 +38,14 @@ Criar atividade
 
       <div class="form-group">
         <label>Tipo:</label>
-        <input type="text" v-model="activity.Tipo" />
+        <select v-model="activity.Tipo">
+  <option value="Animais">Animais</option>
+  <option value="Educação">Educação</option>
+  <option value="Meio ambiente">Meio ambiente</option>
+  <option value="Turismo social">Turismo social</option>
+  <option value="Auxílio de doentes">Auxílio de doentes</option>
+  <option value="Desporto">Desporto</option>
+</select>
       </div>
 
       <div class="form-group">

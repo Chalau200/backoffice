@@ -91,7 +91,7 @@ export default {
     },
     deleteItem(index) {
   // Ask for confirmation before deleting
-  if (confirm("De certeza que quer apagar esta oportunidade?")) {
+  if (confirm("Tem a certeza que quer apagar esta atividade?")) {
     
     const deletedItem = this.tableData[index];
     this.tableData.splice(index, 1);
