@@ -9,7 +9,7 @@ Marcações
             <thead>
               <tr>
                 <th v-for="column in table2.columns" :key="column">{{ column }}</th>
-                <th>Funcionário</th> <!-- New column -->
+                <th>Selecionar Funcionário</th> <!-- New column -->
               </tr>
             </thead>
             <tbody>
@@ -52,7 +52,7 @@ export default {
       table2: {
         title: "Table on Plain Background",
         subTitle: "Here is a subtitle for this table",
-        columns: ["Estado", "Data", "Contacto", "Organização", "Funcionario", "Username", "Aceitar", "Rejeitar"],
+        columns: ["Estado", "Data", "Contacto", "Organização", "Username", "Funcionário", "Aceitar", "Rejeitar"],
         data: [],
       },
       funcionarios: [], // List of funcionarios

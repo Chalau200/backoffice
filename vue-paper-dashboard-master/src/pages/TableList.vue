@@ -40,7 +40,7 @@ export default {
       table2: {
         title: "Table on Plain Background",
         subTitle: "Here is a subtitle for this table",
-        columns: ["Username", "Nome", "Email", "Password", "Ação"],
+        columns: ["Tipo","Username", "Nome", "Email", "Password", "Ação"],
         data: [],
       },
     };
